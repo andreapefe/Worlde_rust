@@ -1,6 +1,7 @@
 use std::io;
 use crate::single_game::mode::{Double, Single, NotStarted};
 
+
 pub enum mode{
     NotStarted,
     Single,

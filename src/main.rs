@@ -1,3 +1,4 @@
+use crate::single::game_single;
 use crate::single_game::gameplay;
 
 mod window;
@@ -6,9 +7,12 @@ mod single;
 
 fn main(){
     let mut game1 : gameplay = gameplay::new();
-    game1.begin();
+    let mut game : game_single = game_single::new();
+    game.get_word();
+    //game1.begin();
     //match main_window();
     //window::main_window();
+
 }
 
 
