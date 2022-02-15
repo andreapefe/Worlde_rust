@@ -1,5 +1,5 @@
 use std::io;
-use crate::single_game::mode::{Double, Single};
+use crate::single_game::mode::{Double, Single, NotStarted};
 
 pub enum mode{
     NotStarted,
@@ -33,27 +33,31 @@ impl gameplay {
         println!("|****************************************|");
 
         //gets the mode from the user
-        let mut choice = String::new();
         let mut correct: bool = false;
-        let choice: u32;
 
         while !correct{
+            let mut choice = String::new();
             io::stdin()
             .read_line(&mut choice)
             .expect("Failed to read line");
-            choice = choice.trim().parse().expect("Please type a number!");
+            let choice: u32 = choice.trim().parse().expect("Please type a number!");
 
             if choice == 1 {
-                gamemode = Single;
+                self.gamemode = Single;
                 correct = true
              } else if choice ==2 {
-                gamemode = Double;
+                self.gamemode = Double;
                 correct = true
             } else {
                 println!("Type 1 or 2");
             }
         }
-
+        print!("You have chosen ");
+        match self.gamemode {
+            Single => println!("Single player"),
+            Double => println!("1 vs 1"),
+            NotStarted => println!("No Mode was selected - Error"),
+        }
     }
 
 
