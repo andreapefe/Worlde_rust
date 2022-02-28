@@ -136,29 +136,31 @@ impl game_single {
                 println!("YOU WON!");
                 self.won = true;
             } else {
-                print!("Contains : ");
-                //check if it contains the letters -> TO MODIFY THE DOUBLE RESULTS
+                self.number_guesses -= 1; //One less guess is available
+                let mut contain = String::new() ;
+                print!("Contains :");
+                //check if it contains the letters, only once
                 for c in guess.chars(){
-                    if self.random_word.contains(c){
-                        print!("{} ", c);
+                    let mut  double
+                    if self.random_word.contains(c) & !(contain.contains(c)){
+                        contain.push(c);
+                        print!(" {}", c);
                     }
                 }
 
                 //Check if they are at the correct place
                 let mut random_indices = self.random_word.char_indices();
                 let mut guess_indices = guess.char_indices();
-                print!("Right place : ");
+                print!("Right place :");
                 for i in 0..5{
                     if &random_indices.next() == &guess_indices.next(){
-                        print!("{} ", guess.chars().nth(i).unwrap());
+                        print!(" {}", guess.chars().nth(i).unwrap());
                     }
                 }
                 println!("");
 
                 println!("Try again!")
             }
-
-
         }
     }
 
