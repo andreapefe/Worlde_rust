@@ -1,25 +1,26 @@
 use rand::{thread_rng, Rng};
 use std::io;
 use std::io::Read;
-use std::env;
-use std::fs::{copy, File, read_to_string};
+//use std::env;
+//use std::fs::{copy, File, read_to_string};
+use std::fs::{File};
 
-use std::io::Error;
+//use std::io::Error;
 use std::path::Path;
-use std::ptr::null;
+//use std::ptr::null;
 use std::string::String;
 
 
-pub struct game_single{
+pub struct GameSingle{
     random_word : String,
     number_guesses : u8,
     won : bool,
 }
 
-impl game_single {
+impl GameSingle {
 
-    pub fn new() -> game_single{
-        game_single{
+    pub fn new() -> GameSingle{
+        GameSingle{
             random_word : String::new(),
             number_guesses : 10,
             won : false,
@@ -40,7 +41,7 @@ impl game_single {
         let mut s = String::new();
         match file.read_to_string(&mut s) {
             Err(why) => panic!("couldn't read {}: {}", display, why),
-            Ok(_) => print!("Bien lu"),
+            Ok(_) => print!("Bien lu\n"),
         }
         //count number of lines
         let mut count = 0;
@@ -49,8 +50,8 @@ impl game_single {
                 count += 1;
             }
         }
-
-        println!("Nombre de lignes: {} ", count);
+        //
+        // println!("Nombre de lignes: {} ", count);
 
         //Get random word
 
@@ -125,7 +126,7 @@ impl game_single {
 
                 if input.chars().count() != 6{
                     println!("Enter a 5 letter word")
-                } else if !game_single::find_word(&input){
+                } else if !GameSingle::find_word(&input){
                     println!("This word does not exist. Try again")
                 } else { correct = true; guess = String::from(input);}
 
@@ -141,7 +142,7 @@ impl game_single {
                 print!("Contains :");
                 //check if it contains the letters, only once
                 for c in guess.chars(){
-                    let mut  double
+                    //let mut double
                     if self.random_word.contains(c) & !(contain.contains(c)){
                         contain.push(c);
                         print!(" {}", c);

@@ -1,26 +1,26 @@
 use std::io;
-use crate::single_game::mode::{Double, Single, NotStarted};
+use crate::gameplay_all::Mode::{Double, Single, NotStarted};
 
 
-pub enum mode{
+pub enum Mode{
     NotStarted,
     Single,
     Double,
 }
 
-pub struct gameplay{
+pub struct Gameplay{
     score : u16,
     number_games : u8,
-    gamemode : mode,
+    gamemode : Mode,
 }
 
-impl gameplay {
+impl Gameplay {
     //Constructor by default (no other values)
-    pub fn new() -> gameplay{
-        gameplay{
+    pub fn new() -> Gameplay{
+        Gameplay{
             score : 0,
             number_games : 0,
-            gamemode : mode::NotStarted,
+            gamemode : Mode::NotStarted,
         }
     }
 
@@ -59,6 +59,10 @@ impl gameplay {
             Double => println!("1 vs 1"),
             NotStarted => println!("No Mode was selected - Error"),
         }
+    }
+
+    pub fn get_mode(self) -> Mode {
+        return self.gamemode;
     }
 
 
