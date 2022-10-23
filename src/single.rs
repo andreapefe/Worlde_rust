@@ -74,7 +74,10 @@ impl GameSingle {
         }
         println!("Word selected!");
         self.random_word.push('\n');
+
+        #[cfg(feature = "debug")]
         println!("{}", self.random_word);
+
     }
 
     fn find_word(word : &String) -> bool {
@@ -143,7 +146,7 @@ impl GameSingle {
                 //check if it contains the letters, only once
                 for c in guess.chars(){
                     //let mut double
-                    if self.random_word.contains(c) & !(contain.contains(c)){
+                    if self.random_word.contains(c){
                         contain.push(c);
                         print!(" {}", c);
                     }
@@ -152,10 +155,12 @@ impl GameSingle {
                 //Check if they are at the correct place
                 let mut random_indices = self.random_word.char_indices();
                 let mut guess_indices = guess.char_indices();
-                print!("Right place :");
+                print!("Right place : ");
                 for i in 0..5{
                     if &random_indices.next() == &guess_indices.next(){
-                        print!(" {}", guess.chars().nth(i).unwrap());
+                        print!("{} ", guess.chars().nth(i).unwrap());
+                    } else {
+                        print!("_ ");
                     }
                 }
                 println!("");

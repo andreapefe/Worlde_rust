@@ -1,4 +1,5 @@
 use std::io;
+use std::ptr::null;
 use crate::gameplay_all::Mode::{Double, Single, NotStarted};
 
 
@@ -30,6 +31,7 @@ impl Gameplay {
         println!("|                                        |");
         println!("| >Type 1 : Single player Game           |");
         println!("| >Type 2 : 1 vs 1 Game                  |");
+        println!("| >Type 3 : Quit                         |");
         println!("|                                        |");
         println!("|****************************************|");
 
@@ -49,15 +51,17 @@ impl Gameplay {
              } else if choice ==2 {
                 self.gamemode = Double;
                 correct = true
+            } else if choice == 3 {
+                println!("Quitting...");
+                correct = true;
             } else {
                 println!("Type 1 or 2");
             }
         }
-        print!("You have chosen ");
         match self.gamemode {
-            Single => println!("Single player"),
-            Double => println!("1 vs 1"),
-            NotStarted => println!("No Mode was selected - Error"),
+            Single => println!("You have chosen  Single player"),
+            Double => println!("You have chosen 1 vs 1"),
+            NotStarted => ()
         }
     }
 

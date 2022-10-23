@@ -5,6 +5,8 @@ mod window;
 mod gameplay_all;
 mod single;
 
+
+
 fn main(){
     let mut game1 : Gameplay = Gameplay::new();
     //start the game
@@ -22,7 +24,7 @@ fn main(){
         Mode::Double => {println!("Not implemented")},
 
         //error in .begin
-        _ => {println!("Game not initiated")}
+        _ => {println!("Goodbye!")}
     }
 
 
